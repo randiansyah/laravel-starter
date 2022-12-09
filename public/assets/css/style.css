@@ -2825,7 +2825,7 @@ body.layout-3 .main-footer {
       padding: 0;
       margin: 0;
       display: none;
-      position: static;
+      /* position: static; */
       float: none;
       width: 100%;
       box-shadow: none;

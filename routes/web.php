@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MyAccountController;
 use App\Http\Controllers\PermissionController;
@@ -35,3 +36,10 @@ Route::resource('/users', UserController::class)->middleware('auth');
 Route::get('/my-account', [MyAccountController::class, 'show'])->middleware('auth');
 Route::post('/my-account', [MyAccountController::class, 'updateAccount'])->middleware('auth');
 Route::post('/my-account/update-password', [MyAccountController::class, 'updatePassword'])->middleware('auth');
+//category
+Route::resource('/category', CategoryController::class)->middleware('auth');
+Route::get('/category', [CategoryController::class, 'index'])->middleware('auth');
+Route::post('/category', [CategoryController::class, 'store'])->middleware('auth');
+Route::get('/category/{id}', [CategoryController::class, 'edit'])->middleware('auth');
+Route::patch('/category/{category}', [CategoryController::class, 'update'])->middleware('auth');
+Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->middleware('auth');
