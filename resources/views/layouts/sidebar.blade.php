@@ -22,5 +22,10 @@
                             </ul>
                         </li>
                         @endrole
+
+                        <li class="menu-header">Tugas</li>
+                        <li class="{{ Request::is('task') ? 'active' : '' }}"><a class="nav-link" href="{{ url('/task') }}"><i class="fas fa-solid fa-check-double"></i> <span>Tugas Tersedia</span></a></li>
+                 
                     </ul>
+
                 </aside>
