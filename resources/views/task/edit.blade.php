@@ -31,14 +31,15 @@
                 <div class="col-12 col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Tambah Tugas</h4>
+                            <h4>Ubah Tugas</h4>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ url('/task') }}" class="needs-validation" novalidate=""  enctype="multipart/form-data">
+                            <form method="POST" action="{{ url('/task/'.$task->id) }}" class="needs-validation" novalidate=""  enctype="multipart/form-data">
+                                @method('patch')
                                 @csrf
                                 <div class="form-group">
                                     <label>Judul</label>
-                                    <input autocomplete="off" name="name" type="text"
+                                    <input value="{{ $task->name }}" autocomplete="off" name="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror"
                                         value="{{ old('name') }}">
                                     @error('name')
@@ -53,8 +54,7 @@
                                         name="category">
                                         <option value=""> -- Pilih Kategori --</option>
                                         @foreach ($category as $c)
-                                            <option value="{{ $c->id }}"
-                                                {{ collect(old('category'))->contains($c->name) ? 'selected' : '' }}>
+                                            <option value="{{ $c->id }}" {{ $c->id == $task->category ? 'selected' : '' }}>
                                                 {{ $c->name }}</option>
                                         @endforeach
                                     </select>
@@ -66,11 +66,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea class="summernote-simple" name="description"></textarea>
+                                    <textarea class="summernote-simple" name="description" value="{{ $task->description }}">{{ $task->description }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Biaya</label>
-                                    <input autocomplete="off" name="price" type="number"
+                                    <input value="{{ $task->price }}" autocomplete="off" name="price" type="number"
                                         class="form-control  @error('price') is-invalid @enderror"
                                         value="{{ old('price') }}">
                                     @error('price')
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Batas Waktu</label>
-                                    <input autocomplete="off" name="deadline" type="number"
+                                    <input value="{{ $task->deadline }}" autocomplete="off" name="deadline" type="number"
                                         class="form-control @error('limit') is-invalid @enderror"
                                         value="{{ old('deadline') }}">
                                     @error('deadline')
@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jumlah Peserta</label>
-                                    <input autocomplete="off" name="limit" type="number"
+                                    <input value="{{ $task->limit }}" autocomplete="off" name="limit" type="number"
                                         class="form-control @error('limit') is-invalid @enderror"
                                         value="{{ old('limit') }}">
                                     @error('limit')
@@ -104,16 +104,20 @@
                                 <div class="form-group">
                                     <label>Image 1</label>
                                     <input type="file" name="image" class="form-control">
+                                    <input type="hidden" value="{{ $task->image }}" name="image_value">
+                                    <input type="hidden" value="{{ $task->path_image }}" name="path_image">
                                   </div>
                                   <div class="form-group">
                                     <label>Image 2</label>
                                     <input type="file" name="image1"  class="form-control">
+                                    <input type="hidden" value="{{ $task->image1 }}" name="image_value1">
+                                    <input type="hidden" value="{{ $task->path_image1 }}" name="path_image1">
                                   </div>
                                   <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control" name="status">
-                                      <option value="active">Aktif</option>
-                                      <option value="inactive">Non Aktif</option>
+                                      <option value="active" {{$task->status == 'active' ? 'selected' : '' }}>Aktif</option>
+                                      <option value="inactive" {{$task->status == 'inactive' ? 'selected' : '' }}>Non Aktif</option>
                                     </select>
                                   </div>
                                 <div class="text-center">

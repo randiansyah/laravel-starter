@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Category as ControllersCategory;
+
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models;
 use App\Models\Category;
 
 class CategoryController extends Controller

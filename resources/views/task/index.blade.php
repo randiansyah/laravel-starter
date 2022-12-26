@@ -29,7 +29,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-          
+
                         @can('task-create')
                         <div class="card-header-action">
                             <a href="{{ url('task/create') }}" class="btn btn-icon btn-primary"><i class="fas fa-plus"></i></a>
@@ -41,8 +41,17 @@
                             <table class="table table-striped" id="datatable">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                  Nama Tugas
+                                        <th>
+                                            Nama Tugas
+                                        </th>
+                                        <th>
+                                            Anggaran yang didapat
+                                        </th>
+                                        <th>
+                                            Jumlah Partisipasi
+                                        </th>
+                                        <th>
+                                            Batas Waktu
                                         </th>
                                         <th>Aksi</th>
                                     </tr>
@@ -54,14 +63,21 @@
 
                                     @foreach ($task as $tasks)
                                     <tr>
-                      
-                                        <td>{{ $tasks->name }}</td>
+
+                                        <td><b>{{ $tasks->name }}</b></td>
+                                        <td><div class="badge badge-success"><b>@rupiah($tasks->price )<b></div></td>
+                                        <td><div class="badge badge-success">0 of {{ $tasks->limit }} </div></td>
+                                        <td>{{ $tasks->deadline }} / Hari</td>
                                         <td>
+
                                             @can('task-update')
                                             <a href="{{ url('/task/' .$tasks->id. '/edit') }}" class="btn btn-icon btn-warning"><i class="far fa-edit"></i></a>
                                             @endcan
                                             @can('task-delete')
                                             <button class="btn btn-icon btn-danger delete-task" data-toggle="modal" data-target="#data-modal-delete" data-id="{{ $tasks->id }}"><i class="fas fa-times"></i></button>
+                                            @endcan
+                                            @can('task-do')
+                                            <a href="{{ url('/task/' .$tasks->id. '/do') }}" class="btn btn-icon btn-success" Title="Kerjakan"><i class="far fa-edit"></i></a>
                                             @endcan
                                         </td>
                                     </tr>
@@ -115,7 +131,7 @@
         let id = $(this).data('id');
 
         $('.modal-title').html('Hapus Data Kategori');
-        $('.modal-content form').attr('action', '{{ url('/task/') }}/' +id);
+        $('.modal-content form').attr('action', '{{ url('/task/') }}/' + id);
     });
 </script>
 @endsection

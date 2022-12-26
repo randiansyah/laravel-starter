@@ -19,8 +19,10 @@ class CreateTaskTable extends Migration
             $table->longText('description');
             $table->integer('category');
             $table->integer('deadline');
-            $table->binary('image');
-            $table->binary('image1');
+            $table->string('image');
+            $table->string('path_image');
+            $table->string('image1');
+            $table->string('path_image1');
             $table->integer('price');
             $table->integer('limit');
             $table->enum('status', ['active', 'inactive']);
