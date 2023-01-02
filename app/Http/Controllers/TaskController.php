@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Models\Task;
+use App\Models\User;
 use App\Models\Category;
 
 class TaskController extends Controller

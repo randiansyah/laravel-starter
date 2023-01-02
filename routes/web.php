@@ -52,3 +52,5 @@ Route::get('/task/{id}', [TaskController::class, 'edit'])->middleware('auth');
 Route::patch('/task/{task}', [TaskController::class, 'update'])->middleware('auth');
 Route::delete('/task/{task}', [TaskController::class, 'destroy'])->middleware('auth');
 Route::get('/task/{id}/do', [TaskController::class, 'do'])->middleware('auth');
+//todos
+Route::post('/todo', [TodoController::class, 'store'])->middleware('auth');
