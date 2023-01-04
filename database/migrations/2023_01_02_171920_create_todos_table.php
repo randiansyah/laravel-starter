@@ -17,8 +17,9 @@ class CreateTodosTable extends Migration
             $table->id();
             $table->integer('task_id');
             $table->integer('user_id');
-            $table->enum('status', ['pending', 'revisi', 'done']);
+            $table->enum('status', ['pending', 'revisi', 'success', 'failed']);
             $table->integer('price');
+            $table->string('name');
             $table->string('image');
             $table->string('image1');
             $table->string('description');
