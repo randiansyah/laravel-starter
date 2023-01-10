@@ -69,6 +69,17 @@
                                     <textarea class="summernote-simple" name="description"></textarea>
                                 </div>
                                 <div class="form-group">
+                                    <label>Catatan</label>
+                                    <input autocomplete="off" name="notes" type="text"
+                                        class="form-control @error('notes') is-invalid @enderror"
+                                        value="{{ old('notes') }}">
+                                    @error('notes')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label>Biaya</label>
                                     <input autocomplete="off" name="price" type="number"
                                         class="form-control  @error('price') is-invalid @enderror"

@@ -69,6 +69,17 @@
                                     <textarea class="summernote-simple" name="description" value="{{ $task->description }}">{{ $task->description }}</textarea>
                                 </div>
                                 <div class="form-group">
+                                    <label>Catatan</label>
+                                    <input value="{{ $task->notes }}" autocomplete="off" name="notes" type="text"
+                                        class="form-control @error('notes') is-invalid @enderror"
+                                        value="{{ old('notes') }}">
+                                    @error('notes')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label>Biaya</label>
                                     <input value="{{ $task->price }}" autocomplete="off" name="price" type="number"
                                         class="form-control  @error('price') is-invalid @enderror"

@@ -28,13 +28,13 @@
         @endif
         <div class="section-body">
             <div class="alert alert-primary alert-has-icon p-4">
-                <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                <div class="alert-icon"><i class="fa-solid fa-fire"></i></div>
                 <div class="alert-body">
                   <div class="alert-title"><b>{{ $task->name  }}</b></div>
                   <p>Biaya yang akan kamu dapatkan setelah mengerjakan tugas sebesar.</p>
 
                   <p class="mt-3">
-                    <a href="#" class="btn bg-white text-dark"><b><i class="fas fa-dollar"></i> @rupiah($task->price) </b></a>
+                    <a href="#" class="btn bg-white text-dark"><b><i class="fa-solid fa-money-bill-wave"></i> @rupiah($task->price) </b></a>
                   </p>
                   
                 </div>
@@ -84,12 +84,12 @@
                         </div>
                         </div>
                       <div class="form-group">
-                        <label>Deskripsi</label>
+                        <label><h6>{{ $task->notes }}</h6></label>
                         <textarea class="summernote-simple" name="description" required></textarea>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-icon icon-left btn-primary"><i
-                                class="fas fa-send"></i> Kirim</button>
+                                class="fas fa-solid fa-paper-plane"></i> Kirim</button>
                     </div>
 
                     </form>

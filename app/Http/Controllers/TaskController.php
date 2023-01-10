@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Models\Task;
 use App\Models\Category;
+use App\Models\Todo;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -22,6 +24,8 @@ class TaskController extends Controller
     {
         $data['pageTitle'] = 'Tugas Tersedia';
         $data['task'] = Task::all();
+
+   
 
         return view('task.index', $data);
     }
@@ -43,6 +47,7 @@ class TaskController extends Controller
             'category' => 'required',
             'deadline' => 'required',
             'price' => 'required',
+            'notes' => 'required',
             'limit' => 'required',
             'status' => 'required',
             'image' => 'required',
@@ -56,6 +61,7 @@ class TaskController extends Controller
             'price.required' => "Harga belum di isi",
             'limit.required' => "Batas belum di isi",
             'status.required' => "Status belum di isi",
+            'notes.required' => "catatan belum di isi",
             'image.required' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048',
             'image1.required' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048'
         ];
@@ -78,6 +84,7 @@ class TaskController extends Controller
             'price' => $request->price,
             'limit' => $request->limit,
             'status' => $request->status,
+            'notes' => $request->notes,
             'image' => $imageName,
             'path_image' => $path_image,
             'image1' => $imageName1,
@@ -106,6 +113,7 @@ class TaskController extends Controller
             'category' => 'required',
             'deadline' => 'required',
             'price' => 'required',
+            'notes' => 'required',
             'limit' => 'required',
             'status' => 'required',
         ];
@@ -116,6 +124,7 @@ class TaskController extends Controller
             'deadline.required' => "Deadline belum di isi",
             'price.required' => "Harga belum di isi",
             'limit.required' => "Batas belum di isi",
+            'notes.required' => "catatan belum di isi",
             'status.required' => "Status belum di isi",
 
         ];
@@ -155,6 +164,7 @@ class TaskController extends Controller
             'deadline' => $request->deadline,
             'price' => $request->price,
             'limit' => $request->limit,
+            'notes' => $request->notes,
             'status' => $request->status,
             'image' => $imageName,
             'image1' => $imageName1,
@@ -173,6 +183,8 @@ class TaskController extends Controller
     
     public function do($id)
     {
+    
+
         $data['pageTitle'] = 'Tugas Baru';
         $data['task'] = Task::find($id);
         $data['category'] = Category::all();

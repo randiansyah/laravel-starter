@@ -14,4 +14,9 @@ class Todo extends Model
   protected $fillable = [
     'user_id', 'task_id', 'image', 'image1', 'description', 'price', 'comment', 'status','name'
   ];
+
+  public function task()
+  {
+      return $this->belongsTo(Task::class);
+  }
 }

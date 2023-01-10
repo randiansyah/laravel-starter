@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\WalletController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -59,3 +60,12 @@ Route::post('/todo', [TodoController::class, 'store'])->middleware('auth');
 Route::get('/todo/{id}', [TodoController::class, 'edit'])->middleware('auth');
 Route::patch('/todo/{todo}', [TodoController::class, 'update'])->middleware('auth');
 Route::delete('/todo/{todo}', [TodoController::class, 'destroy'])->middleware('auth');
+
+//wallet
+Route::get('/withdrawal', [WalletController::class, 'withdrawal'])->middleware('auth');
+Route::get('/wallet', [WalletController::class, 'index'])->middleware('auth');
+Route::post('/wallet', [WalletController::class, 'store'])->middleware('auth');
+Route::post('/noVirtual', [WalletController::class, 'store_virtual'])->middleware('auth');
+Route::get('/wallet/{wallet}', [WalletController::class, 'edit'])->middleware('auth');
+Route::patch('/wallet/{wallet}', [WalletController::class, 'update'])->middleware('auth');
+Route::delete('/wallet/{wallet}', [WalletController::class, 'destroy'])->middleware('auth');

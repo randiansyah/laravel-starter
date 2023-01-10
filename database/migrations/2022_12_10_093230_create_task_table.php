@@ -25,6 +25,7 @@ class CreateTaskTable extends Migration
             $table->string('path_image1');
             $table->integer('price');
             $table->integer('limit');
+            $table->char('notes', 200);
             $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });

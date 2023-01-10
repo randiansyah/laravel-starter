@@ -23,6 +23,16 @@
         </div>
     </div>
     @endif
+    @if($errors->any())
+<div class="alert alert-danger alert-dismissible show fade">
+    <div class="alert-body">
+        <button class="close" data-dismiss="alert">
+            <span>×</span>
+        </button>
+        {{$errors->first()}}
+    </div>
+</div>
+@endif
 
     <div class="section-body">
         <div class="row">
@@ -66,7 +76,9 @@
 
                                         <td><b>{{ $tasks->name }}</b></td>
                                         <td><div class="badge badge-success"><b>@rupiah($tasks->price )<b></div></td>
-                                        <td><div class="badge badge-success">0 of {{ $tasks->limit }} </div></td>
+                                        <td><div class="badge badge-success">@php $todoList = $tasks->todos()->get(); @endphp
+                                            {{$todoCount= $todoList->count()}}
+                                         of {{ $tasks->limit }} </div></td>
                                         <td>{{ $tasks->deadline }} / Hari</td>
                                         <td>
 
@@ -77,7 +89,11 @@
                                             <button class="btn btn-icon btn-danger delete-task" data-toggle="modal" data-target="#data-modal-delete" data-id="{{ $tasks->id }}"><i class="fas fa-times"></i></button>
                                             @endcan
                                             @can('task-do')
-                                            <a href="{{ url('/task/' .$tasks->id. '/do') }}" class="btn btn-icon btn-success" Title="Kerjakan"><i class="far fa-edit"></i></a>
+                                            @if($tasks->limit > $todoCount)
+                                            <a href="{{ url('/task/' .$tasks->id. '/do') }}" class="btn btn-icon btn-success" Title="Kerjakan"><i class="fas fa-solid fa-paper-plane"></i></a>
+                                
+                                            @else
+                                                     @endif
                                             @endcan
                                         </td>
                                     </tr>
